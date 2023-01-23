@@ -36,8 +36,9 @@ cmd="./bin/spark-submit \
 --conf spark.driver.maxResultSize=16g \
 --conf spark.driver.memory=30g \
 --conf spark.executor.memory=30g \
---jars local:/home/clash/sparks/spark-kddlog/datalog/target/scala-2.11/spark-datalog_2.11-2.0.3-SNAPSHOT.jar \
-local:/home/clash/sparks/spark-kddlog/examples/target/scala-2.11/jars/spark-examples_2.11-2.0.3-SNAPSHOT.jar \
+--conf spark.sql.shuffle.partitions=1 \
+--jars local:$PWD/datalog/target/scala-2.11/spark-datalog_2.11-2.0.3-SNAPSHOT.jar \
+local:$PWD/examples/target/scala-2.11/jars/spark-examples_2.11-2.0.3-SNAPSHOT.jar \
 $@"
 
 (printf "\n[Command] $cmd\n" && $cmd) 2>&1 | tee -a $output

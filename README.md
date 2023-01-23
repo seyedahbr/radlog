@@ -73,3 +73,46 @@ Please refer to the build documentation at
 ["Specifying the Hadoop Version"](http://spark.apache.org/docs/latest/building-spark.html#specifying-the-hadoop-version)
 for detailed guidance on building for a particular distribution of Hadoop, including
 building for particular Hive and Hive Thriftserver distributions.
+
+## File preparation
+
+Graph data:
+
+```
+python txt_to_csv.py snap/wiki-Vote.txt wiki.csv
+python txt_to_csv.py snap/twitter_combined.txt twitter.csv
+python txt_to_csv.py snap/soc-Epinions1.txt epinions.csv
+python txt_to_csv.py snap/wiki-Vote.txt wiki-w.csv
+python txt_to_csv.py snap/twitter_combined.txt twitter-w.csv
+python txt_to_csv.py snap/soc-Epinions1.txt epinions-w.csv
+cp wiki.csv ../datasets/wiki/
+cp wiki-w.csv ../datasets/wiki/
+cp epinions.csv ../datasets/epinions/
+cp epinions-w.csv ../datasets/epinions/
+cp twitter.csv ../datasets/twitter/
+cp twitter-w.csv ../datasets/twitter/
+```
+
+Vector data:
+
+```
+python vec_gen.py 2 vec2.csv
+python vec_gen.py 4 vec4.csv
+python vec_gen.py 8 vec8.csv
+python vec_gen.py 16 vec16.csv
+python vec_gen.py 32 vec32.csv
+python vec_gen.py 64 vec64.csv
+python vec_gen.py 128 vec128.csv
+mkdir ../datasets/vec
+mv vec*.csv ../datasets/vec/
+```
+
+
+## Running
+
+```
+./run.sh -program=cc_all -arc=../datasets/twitter/twitter.csv
+./run.sh -program=cc_all -arc=../datasets/epinions/epinions.csv
+./run.sh -program=cc_all -arc=../datasets/wiki/wiki.csv
+./run.sh -program=presum -arc=../datasets/vec/vec.csv -output=presum-out
+```
