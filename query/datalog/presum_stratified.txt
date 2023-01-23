@@ -1,0 +1,12 @@
+-- hint: broadcast
+
+database({
+  arc(X: integer, Y: integer)
+}).
+
+elems(T, J, W) <- arc(J, W), T = J.
+elems(T, J, W) <- arc(T,_), arc(S,_), T = (S+1), elems(S, J, W), 1 <= J, J < T.
+
+presum(T, sum<W>) <- elems(T, _, W).
+
+query presum(X, Y).

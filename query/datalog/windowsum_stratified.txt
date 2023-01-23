@@ -1,0 +1,22 @@
+-- hint: broadcast
+
+database({
+  arc(X: integer, Y: integer)
+}).
+
+--* v1 *--
+elems(T, J, W) <- arc(J, W), T = J.
+elems(T, J, W) <- arc(T,_), arc(S,_), T = (S+1), elems(S, J, W), 1 <= J, (T - 10) < J, J < T.
+
+windowsum(T, sum<W>) <- elems(T, _, W), T >= 10.
+
+-- --*  v2, doesn't compile *--
+
+-- elems(T, J, W) <- arc(J, W), T = J.
+-- elems(T, J, W) <- arc(T,_), arc(S,_), T = (S+1), elems(S, J, W), 1 <= J, J < T.
+
+-- presum(T, sum<W>) <- elems(T, _, W).
+
+-- windowsum(T, V) <- presum(T, V1), presum(S, V2), T = (S + 10), V=(V1 - V2).
+
+query windowsum(X, Y).

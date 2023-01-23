@@ -114,5 +114,6 @@ mv vec*.csv ../datasets/vec/
 ./run.sh -program=cc_all -arc=../datasets/twitter/twitter.csv
 ./run.sh -program=cc_all -arc=../datasets/epinions/epinions.csv
 ./run.sh -program=cc_all -arc=../datasets/wiki/wiki.csv
-./run.sh -program=presum -arc=../datasets/vec/vec.csv -output=presum-out
+./run.sh -program=presum_stratified -arc=../datasets/vec/vec.csv -output=presum-out
+./run.sh -program=windowsum_stratified -arc=../datasets/vec/vec.csv -output=windowsum-out
 ```

@@ -4,9 +4,9 @@ database({
   arc(X: integer, Y: integer)
 }).
 
--- -- v1
--- presum(I, mmax<B>) <- I=0,B=0.
--- presum(J, mmax<B>) <- presum(I,OB),J=(I+1),arc(J,V), B=(OB+V).
+-- v1
+presum(I, mmax<B>) <- I=0,B=0.
+presum(J, mmax<B>) <- presum(I,OB),J=(I+1),arc(J,V), B=(OB+V).
 
 -- -- v2
 -- presum(I, mmin<B>) <- I=0,B=0.
@@ -16,7 +16,4 @@ database({
 -- presum(I, B) <- I=0,B=0.
 -- presum(J, B) <- presum(I,OB),J=(I+1),arc(J,V), B=(OB+V).
 
-
-result(X, Y) <- presum(X, Y).
-
-query result(X, Y).
+query presum(X, Y).
