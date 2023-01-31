@@ -76,6 +76,19 @@ building for particular Hive and Hive Thriftserver distributions.
 
 ## File preparation
 
+Download datasets:
+
+```
+mkdir snap
+cd snap
+wget https://snap.stanford.edu/data/wiki-Vote.txt.gz
+wget https://snap.stanford.edu/data/twitter_combined.txt.gz
+wget https://snap.stanford.edu/data/soc-Epinions1.txt.gz
+gunzip wiki-Vote.txt.gz
+gunzip twitter_combined.txt.gz
+gunzip soc-Epinions1.txt.gz
+```
+
 Graph data:
 
 ```
@@ -85,12 +98,16 @@ python txt_to_csv.py snap/soc-Epinions1.txt epinions.csv
 python txt_to_csv.py snap/wiki-Vote.txt wiki-w.csv
 python txt_to_csv.py snap/twitter_combined.txt twitter-w.csv
 python txt_to_csv.py snap/soc-Epinions1.txt epinions-w.csv
-cp wiki.csv ../datasets/wiki/
-cp wiki-w.csv ../datasets/wiki/
-cp epinions.csv ../datasets/epinions/
-cp epinions-w.csv ../datasets/epinions/
-cp twitter.csv ../datasets/twitter/
-cp twitter-w.csv ../datasets/twitter/
+mkdir ../datasets
+mkdir ../datasets/wiki/
+mkdir ../datasets/epinions/
+mkdir ../datasets/twitter/
+mv wiki.csv ../datasets/wiki/
+mv wiki-w.csv ../datasets/wiki/
+mv epinions.csv ../datasets/epinions/
+mv epinions-w.csv ../datasets/epinions/
+mv twitter.csv ../datasets/twitter/
+mv twitter-w.csv ../datasets/twitter/
 ```
 
 Vector data:
@@ -114,6 +131,6 @@ mv vec*.csv ../datasets/vec/
 ./run.sh -program=cc_all -arc=../datasets/twitter/twitter.csv
 ./run.sh -program=cc_all -arc=../datasets/epinions/epinions.csv
 ./run.sh -program=cc_all -arc=../datasets/wiki/wiki.csv
-./run.sh -program=presum_stratified -arc=../datasets/vec/vec.csv -output=presum-out
-./run.sh -program=windowsum_stratified -arc=../datasets/vec/vec.csv -output=windowsum-out
+./run.sh -program=presum_stratified -arc=../datasets/vec/vec8.csv -output=presum-out
+./run.sh -program=windowsum_stratified -arc=../datasets/vec/vec8.csv -output=windowsum-out
 ```
