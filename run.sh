@@ -35,8 +35,10 @@ cmd="./bin/spark-submit \
 --conf spark.datalog.shuffledistinct.enabled=false \
 --conf spark.driver.maxResultSize=16g \
 --conf spark.driver.memory=30g \
+--conf spark.datalog.recursion.maxIterations=1000000 \
 --conf spark.executor.memory=30g \
 --conf spark.sql.shuffle.partitions=1 \
+--conf spark.executor.cores=1 \
 --jars local:$PWD/datalog/target/scala-2.11/spark-datalog_2.11-2.0.3-SNAPSHOT.jar \
 local:$PWD/examples/target/scala-2.11/jars/spark-examples_2.11-2.0.3-SNAPSHOT.jar \
 $@"
