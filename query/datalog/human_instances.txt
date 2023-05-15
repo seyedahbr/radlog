@@ -1,0 +1,9 @@
+-- hint: broadcast
+
+database({
+  triple(X:string, Y:string, Z:string, W:string)
+}).
+
+human(X) <- triple(X, "<http://www.wikidata.org/entity/assert/P31>", "<http://www.wikidata.org/entity/Q5>", ".").
+
+query human(X).
