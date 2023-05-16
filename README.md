@@ -101,3 +101,10 @@ Vector data:
 ./run_graph.sh
 ./run_vec.sh
 ```
+
+## Subsetting Experiments
+Download and unzip Wikidata 2015 dump (you will need 150GB free disk space):
+```$ curl --output wikidata.csv.gz "https://zenodo.org/record/7937850/files/wikidata_2015.csv.gz?download=1"```
+```$ gunzip wikidata.csv.gz```
+Run spark:
+```$ ./run.sh -program=human_instances -triple=wikidata_2015.csv -output=instances```
