@@ -1,0 +1,10 @@
+-- hint: broadcast
+
+database({
+   triple(X:string, Y:string, Z:string, W:string)
+}).
+
+isGene(g) <- triple(g,"<http://www.wikidata.org/entity/assert/P31>","<http://www.wikidata.org/entity/Q7187>", ".").
+isDisease(d) <- triple(d,"<http://www.wikidata.org/entity/assert/P31>","<http://www.wikidata.org/entity/Q12136>", ".").
+Q(g) :- isGene(g), isDisease(d), triple(g, "<http://www.wikidata.org/entity/assert/P2293>", d, ".").
+Q(g) :- isGene(g), isDisease(d), triple(v, "<http://www.wikidata.org/entity/assert/P3433>", g, "."), triple(v, "<http://www.wikidata.org/entity/P3354>", n, "."), triple(n, "<http://www.wikidata.org/entity/qualifier/P2175>", d, ".").
