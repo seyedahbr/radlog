@@ -40,7 +40,6 @@ cmd="./bin/spark-submit \
 --conf spark.executor.memory=300g \
 --conf spark.sql.shuffle.partitions=1 \
 --conf spark.executor.cores=32 \
---conf spark.local.dir=/disk/scratch/shossei2/tmp \
 local:$PWD/datalog/target/scala-2.11/spark-datalog_2.11-2.0.3-SNAPSHOT.jar 
 $@"
 
