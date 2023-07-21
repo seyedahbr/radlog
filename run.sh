@@ -28,19 +28,20 @@ output="exps/current/${args}.txt"
 
 # prefix "local:" is crucial, otherwise you will see a long task deser time
 cmd="./bin/spark-submit \
---master spark://SCAI01.CS.UCLA.EDU:7077 \
+--master local[*] \
+--deploy-mode client \
 --class edu.ucla.cs.wis.bigdatalog.spark.runner.Experiments \
 --conf spark.locality.wait=0s \
 --conf spark.ui.showConsoleProgress=false \
 --conf spark.datalog.shuffledistinct.enabled=false \
---conf spark.driver.maxResultSize=16g \
---conf spark.driver.memory=30g \
+--conf spark.driver.maxResultSize=300g \
+--conf spark.driver.memory=300g \
 --conf spark.datalog.recursion.maxIterations=1000000 \
---conf spark.executor.memory=30g \
+--conf spark.executor.memory=300g \
 --conf spark.sql.shuffle.partitions=1 \
---conf spark.executor.cores=1 \
---jars local:$PWD/datalog/target/scala-2.11/spark-datalog_2.11-2.0.3-SNAPSHOT.jar \
-local:$PWD/examples/target/scala-2.11/jars/spark-examples_2.11-2.0.3-SNAPSHOT.jar \
+--conf spark.executor.cores=32 \
+--conf spark.local.dir=/disk/scratch/shossei2/tmp \
+local:$PWD/datalog/target/scala-2.11/spark-datalog_2.11-2.0.3-SNAPSHOT.jar 
 $@"
 
 (printf "\n[Command] $cmd\n" && $cmd) 2>&1 | tee -a $output

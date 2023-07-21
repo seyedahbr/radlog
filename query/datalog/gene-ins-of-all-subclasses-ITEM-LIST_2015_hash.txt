@@ -1,0 +1,12 @@
+-- hint: broadcast
+
+database({
+  triple(X:integer, Y:integer, Z:integer)
+}).
+
+isGeneClass(B) <- triple(B,844252587,-193471730).
+isGeneClass(C) <- triple(C,844252587,Y), isGeneClass(Y).
+acceptable(X) <- triple(X,-1496785921,-193471730).
+acceptable(X) <- triple(X,-1496785921,Z), isGeneClass(Z).
+
+query acceptable(X).

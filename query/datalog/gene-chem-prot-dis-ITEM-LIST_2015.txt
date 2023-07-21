@@ -1,0 +1,12 @@
+-- hint: shuffle
+
+database({
+  triple(X:string, Y:string, Z:string, W:string)
+}).
+
+acceptable(X) <- triple(X,"<http://www.wikidata.org/entity/assert/P31>","<http://www.wikidata.org/entity/Q7187>",".").
+acceptable(X) <- triple(X,"<http://www.wikidata.org/entity/assert/P31>","<http://www.wikidata.org/entity/Q8054>",".").
+acceptable(X) <- triple(X,"<http://www.wikidata.org/entity/assert/P31>","<http://www.wikidata.org/entity/Q11173>",".").
+acceptable(X) <- triple(X,"<http://www.wikidata.org/entity/assert/P31>","<http://www.wikidata.org/entity/Q12136>",".").
+
+query acceptable(X).

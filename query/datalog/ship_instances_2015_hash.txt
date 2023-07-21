@@ -1,0 +1,9 @@
+-- hint: shuffle
+
+database({
+  triple(X:integer, Y:integer, Z:integer)
+}).
+
+ship(X) <- triple(X,-1496785921,-1874553473).
+
+query ship(X).

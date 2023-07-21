@@ -1,0 +1,12 @@
+-- hint: shuffle
+
+database({
+  triple(X:integer, Y:integer, Z:integer)
+}).
+
+acceptable(X) <- triple(X,-1496785921,-193471730).
+acceptable(X) <- triple(X,-1496785921,-192580976).
+acceptable(X) <- triple(X,-1496785921,-1874640056).
+acceptable(X) <- triple(X,-1496785921,-1873720286).
+
+query acceptable(X).

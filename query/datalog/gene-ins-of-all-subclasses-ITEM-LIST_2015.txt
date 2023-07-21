@@ -1,0 +1,11 @@
+-- hint: shuffle
+
+database({
+  triple(X:string, Y:string, Z:string, W:string)
+}).
+
+isGeneClass(Z) <- triple(Z,"<http://www.wikidata.org/entity/assert/P279>","<http://www.wikidata.org/entity/Q7187>",".").
+isGeneClass(Z) <- triple(Z,"<http://www.wikidata.org/entity/assert/P279>",Y, "."), isGeneClass(Y).
+acceptable(X) <- triple(X,"<http://www.wikidata.org/entity/assert/P31>",Z, "."), isGeneClass(Z).
+
+query acceptable(X).

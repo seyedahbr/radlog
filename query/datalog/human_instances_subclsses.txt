@@ -1,0 +1,11 @@
+-- hint: broadcast
+
+database({
+  triple(X:string, Y:string, Z:string, W:string)
+}).
+
+geneSub(X) <- triple(X, "<http://www.wikidata.org/entity/assert/P279>", "<http://www.wikidata.org/entity/Q7187>", ".").
+allHirSub(X) <- geneSub(X).
+allHirSub(X) <- triple(X, "<http://www.wikidata.org/entity/assert/P279>", A, "."), allHirSub(A).
+
+query allHirSub(X).
